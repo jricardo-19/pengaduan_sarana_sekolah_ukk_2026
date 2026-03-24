@@ -39,14 +39,16 @@ $level = isset($_SESSION['level']) ? $_SESSION['level'] : 'siswa';
                     </a>
                 </li>
 
-                <li class="pc-item <?= ($p=='akun') ? 'active' : ''; ?>">
-                    <a href="index.php?page=akun" class="pc-link">
+                <li class="pc-item <?= ($p=='admin_akun') ? 'active' : ''; ?>">
+                    <a href="index.php?page=admin_akun" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-user-circle"></i></span>
                         <span class="pc-mtext">Akun Saya</span>
                     </a>
                 </li>
 
                 <?php else: ?>
+
+                    
                 <li class="pc-item pc-caption"><label>MENU UTAMA</label></li>
                 
                 <li class="pc-item <?= ($p=='home') ? 'active' : ''; ?>">
