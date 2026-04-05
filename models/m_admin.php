@@ -108,6 +108,8 @@ class m_admin extends Database {
         $dat_kat = mysqli_fetch_assoc($cek_kat);
         $id_kat = $dat_kat['id_kategori'];
 
+        mysqli_query($this->koneksi, "UPDATE tb_input_aspirasi SET status='$status_baru' WHERE id_pelaporan='$id_pelaporan'");
+
         // Jika Status SELESAI -> Pindah ke tb_riwayat
         if ($status_baru == 'Selesai') {
             $q_insert = "INSERT INTO tb_riwayat (id_pelaporan, id_kategori, id_admin, tgl_selesai, feedback) 
