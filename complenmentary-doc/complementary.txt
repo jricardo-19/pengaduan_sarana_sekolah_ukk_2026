@@ -1,0 +1,16 @@
+LINK GITHUB:
+https://github.com/jricardo-19/pengaduan_sarana_sekolah_ukk_2026.git
+
+LINK HOSTING:
+https://julian-ricardop3.wuaze.com/
+
+AKUN WEBSITE:
+1.ADMIN
+  username: admin
+  password: admin
+
+2.USER
+  username: Julian Ricardo
+  password: 20217142
+
+*register akun menggunakan nama lengkap, dan password menggunakan NISN/NIS*
