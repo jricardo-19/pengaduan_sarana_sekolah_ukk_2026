@@ -4,14 +4,24 @@ require_once 'config/cn_database.php';
 class m_admin extends Database {
 
     public function get_stats() {
-        $q1 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_aspirasi WHERE status='' OR status='0' OR status IS NULL"));
-        $q2 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_aspirasi WHERE status='Menunggu'"));
+        // PERBAIKAN: Menambahkan 'Menunggu' agar Laporan Masuk ikut bertambah & memunculkan notifikasi
+        $q1 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_aspirasi WHERE status='' OR status='0' OR status IS NULL OR status='Menunggu'"));
+        
+        // PERBAIKAN: Menyamakan kondisi dengan Laporan Masuk agar akurat
+        $q2 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_aspirasi WHERE status='Menunggu' OR status='0' OR status='' OR status IS NULL"));
+        
         $q3 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_aspirasi WHERE status='Proses'"));
         $q4 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_riwayat"));
         $q5 = mysqli_num_rows(mysqli_query($this->koneksi, "SELECT * FROM tb_siswa"));
-        return ['laporan_masuk' => $q1, 'menunggu' => $q2, 'proses' => $q3, 'selesai' => $q4, 'total_siswa' => $q5];
+        
+        return [
+            'laporan_masuk' => $q1, 
+            'menunggu'      => $q2, 
+            'proses'        => $q3, 
+            'selesai'       => $q4, 
+            'total_siswa'   => $q5
+        ];
     }
-
     public function get_kategori() {
         return mysqli_query($this->koneksi, "SELECT * FROM tb_kategori");
     }
