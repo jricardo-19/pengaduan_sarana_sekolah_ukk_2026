@@ -84,7 +84,7 @@ $level = isset($_SESSION['level']) ? $_SESSION['level'] : 'siswa';
 
                 <li class="pc-item pc-caption"><label>KELUAR</label></li>
                 <li class="pc-item">
-                    <a href="index.php?page=logout" class="pc-link text-danger">
+                <a href="index.php?page=logout" class="pc-link text-danger" onclick="return confirm('Apakah Anda yakin ingin keluar?');">
                         <span class="pc-micon"><i class="ti ti-power"></i></span>
                         <span class="pc-mtext">Logout</span>
                     </a>
