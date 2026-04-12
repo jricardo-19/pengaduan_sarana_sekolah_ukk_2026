@@ -15,16 +15,22 @@
     <link rel="stylesheet" href="assets/css/style-preset.css" />
 
     <style>
-       @media (max-width: 1024px) {
-    .pc-sidebar.mob-sidebar-active {
-        left: 0 !important; /* Tambahkan baris ini untuk menariknya ke dalam layar */
-        transform: translateX(0) !important; 
-        z-index: 1060 !important; /* Naikkan z-index lebih tinggi dari overlay blur (biasanya overlay ada di 1040/1050) */
-        visibility: visible !important;
-        background-color: #1e293b !important; /* Pastikan background tidak transparan */
-        /* ... sisa kode css Anda ... */
-    }
-}
+        /* PERBAIKAN CSS SIDEBAR MOBILE TUNTAS */
+        @media (max-width: 1024px) {
+            .pc-sidebar.mob-sidebar-active {
+                position: fixed !important; /* Kunci utama agar nempel di layar */
+                top: 0 !important;
+                left: 0 !important; /* Tarik dari luar layar */
+                height: 100vh !important; /* Sepenuh tinggi layar */
+                transform: translateX(0) !important; 
+                z-index: 99999 !important; /* Jauh lebih tinggi dari blur backdrop */
+                visibility: visible !important;
+                display: block !important;
+                background-color: #212529 !important; /* Warna gelap agar tidak transparan */
+                box-shadow: 4px 0 10px rgba(0,0,0,0.5) !important;
+                width: 260px !important; /* Lebar standar sidebar */
+            }
+        }
     </style>
 </head>
 
@@ -46,5 +52,5 @@
                 </ul>
             </div>
             
-            </div>
+        </div>
     </header>
