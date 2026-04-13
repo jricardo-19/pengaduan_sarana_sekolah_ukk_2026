@@ -17,8 +17,6 @@ class c_admin {
 
         $page = isset($_GET['page']) ? $_GET['page'] : 'admin_dashboard';
 
-        // 1. Load Header & Sidebar (KECUALI Cetak & Proses Logic)
-        // Kita exclude 'proses_tanggapan' dan 'hapus_laporan' karena mereka hanya logic (bukan tampilan)
         if ($page != 'cetak_laporan' && $page != 'proses_tanggapan' && $page != 'hapus_laporan') {
             include 'views/template/header.php';
             include 'views/template/sidebar.php';
@@ -47,13 +45,11 @@ class c_admin {
                 include 'views/admin/v_verifikasi.php';
                 break;
 
-           // === LOGIC: PROSES TANGGAPAN (Perbaikan Bug Status) ===
+          // === LOGIC: PROSES TANGGAPAN === \\
            case 'proses_tanggapan':
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $id  = $_POST['id_pelaporan'];
                 $st  = $_POST['status'];
-                
-                // PERBAIKAN BUG: Menyamakan dengan name="tanggapan" di form v_verifikasi
                 $fb  = isset($_POST['tanggapan']) ? $_POST['tanggapan'] : ''; 
                 
                 $adm = $_SESSION['id_admin']; 
@@ -63,10 +59,12 @@ class c_admin {
                 } else {
                     echo "<script>alert('Gagal Update Database!'); window.location='index.php?page=verifikasi';</script>";
                 }
-            } else {
-                // Jika diakses langsung tanpa POST, kembalikan ke verifikasi
+            } 
+            
+            else {
                 header("Location: index.php?page=verifikasi");
             }
+
             break;
             
             // === LOGIC: HAPUS LAPORAN === \\
@@ -88,7 +86,7 @@ class c_admin {
                     'nama'      => isset($_GET['nama']) ? $_GET['nama'] : '',
                     'kategori'  => isset($_GET['kategori']) ? $_GET['kategori'] : ''
                 ];
-                // Menggunakan fungsi get_riwayat_filter di Model
+            
                 $data_riwayat = $this->model->get_riwayat_filter($filter);
                 
             

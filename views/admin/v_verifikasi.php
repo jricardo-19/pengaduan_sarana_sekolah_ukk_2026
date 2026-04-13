@@ -280,10 +280,22 @@
             document.getElementById('label_ket').innerText = '"' + btn.getAttribute('data-ket') + '"';
             document.getElementById('label_lokasi').innerText = btn.getAttribute('data-lokasi');
 
-            // Set Status
-            var currentStatus = btn.getAttribute('data-status');
+           // Set Status
+           var currentStatus = btn.getAttribute('data-status');
+            var optionMenunggu = selectStatus.querySelector('option[value="Menunggu"]');
+            
+            // 1. Reset opsi ke kondisi normal setiap kali modal baru dibuka
+            optionMenunggu.disabled = false;
+            optionMenunggu.innerHTML = "Menunggu";
+
             if (currentStatus && currentStatus != '0' && currentStatus != '') {
                 selectStatus.value = currentStatus;
+                
+                // 2. KUNCI STATUS: Jika sudah 'Proses', opsi 'Menunggu' dimatikan
+                if (currentStatus === 'Proses') {
+                    optionMenunggu.disabled = true;
+                    optionMenunggu.innerHTML = "Menunggu (Terkunci)";
+                }
             } else {
                 selectStatus.value = 'Menunggu';
             }
